@@ -32,7 +32,7 @@ let data
 function preload(){
 
     console.log("abc")
-    data = loadJSON('dataJJ1.json');
+    data = loadJSON('dataJJ.json');
     console.log(data.ciao)
     }
 
@@ -47,7 +47,7 @@ document.body.appendChild(BackgroundDiv)
 var QuestionTextDiv= document.createElement("Div")
 QuestionTextDiv.setAttribute("id", "question-text-div");
 BackgroundDiv.appendChild(QuestionTextDiv)
-QuestionTextDiv.innerText =data.ciao
+QuestionTextDiv.innerText = data.ciao
 
 /// btn sign in
 var R1 = inpt("btnR3", BackgroundDiv, "button")
@@ -66,11 +66,9 @@ R3.setAttribute("value", "response 3")
 R3.setAttribute("onclick", "")
 
 
-function draw(){
+let text = data.ciao
+console.log(text)
 
-    let text = data.ciao
-    console.log(text)
-}
 
   
 
