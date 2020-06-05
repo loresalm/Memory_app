@@ -67,8 +67,6 @@ R3.setAttribute("value", "response 3")
 R3.setAttribute("onclick", "")
 
 
-let text = data.ciao
-console.log(text)
 
 
   
