@@ -28,6 +28,8 @@ var PASS = ["La stazza è:",
 "a 8,32 metri cubi.",
 2]
 */
+
+
 let data
 function preload(){
 
@@ -36,7 +38,17 @@ function preload(){
     console.log(data.ciao)
     }
 
+function setup(){
+    noLoop();
+}
 
+
+function draw{ 
+
+
+
+console.log("draw...");
+console.log(data.ciao);
 
 
 
@@ -67,7 +79,7 @@ R3.setAttribute("value", "response 3")
 R3.setAttribute("onclick", "")
 
 
-
+}
 
   
 
