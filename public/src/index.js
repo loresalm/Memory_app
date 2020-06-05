@@ -36,11 +36,7 @@ function preload(){
     console.log(data.ciao)
     }
 
-function draw(){
 
-    let text = data.ciao
-    console.log(text)
-}
 
 
 var BackgroundDiv= document.createElement("Div")
@@ -70,7 +66,11 @@ R3.setAttribute("value", "response 3")
 R3.setAttribute("onclick", "")
 
 
+function draw(){
 
+    let text = data.ciao
+    console.log(text)
+}
 
   
 
