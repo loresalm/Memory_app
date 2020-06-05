@@ -43,40 +43,37 @@ function setup(){
 }
 
 
-function draw{ 
+function draw(){ 
 
 
 
-console.log("draw...");
-console.log(data.ciao);
+    console.log("draw...");
+    console.log(data.ciao);
+    var BackgroundDiv= document.createElement("Div")
+    BackgroundDiv.setAttribute("id", "background-div");
+    document.body.appendChild(BackgroundDiv)
 
 
+    var QuestionTextDiv= document.createElement("Div")
+    QuestionTextDiv.setAttribute("id", "question-text-div");
+    BackgroundDiv.appendChild(QuestionTextDiv)
+    QuestionTextDiv.innerText = data.ciao
 
-var BackgroundDiv= document.createElement("Div")
-BackgroundDiv.setAttribute("id", "background-div");
-document.body.appendChild(BackgroundDiv)
+    /// btn sign in
+    var R1 = inpt("btnR3", BackgroundDiv, "button")
+    R1.setAttribute("value", "response 1")
+    R1.setAttribute("onclick", "")
 
-
-var QuestionTextDiv= document.createElement("Div")
-QuestionTextDiv.setAttribute("id", "question-text-div");
-BackgroundDiv.appendChild(QuestionTextDiv)
-QuestionTextDiv.innerText = "Question ? "
-
-/// btn sign in
-var R1 = inpt("btnR3", BackgroundDiv, "button")
-R1.setAttribute("value", "response 1")
-R1.setAttribute("onclick", "")
-
-/// btn sign in
-var R2 = inpt("btnR3", BackgroundDiv, "button")
-R2.setAttribute("value", "response 2")
-R2.setAttribute("onclick", "")
+    /// btn sign in
+    var R2 = inpt("btnR3", BackgroundDiv, "button")
+    R2.setAttribute("value", "response 2")
+    R2.setAttribute("onclick", "")
 
 
-/// btn sign in
-var R3 = inpt("btnR3", BackgroundDiv, "button")
-R3.setAttribute("value", "response 3")
-R3.setAttribute("onclick", "")
+    /// btn sign in
+    var R3 = inpt("btnR3", BackgroundDiv, "button")
+    R3.setAttribute("value", "response 3")
+    R3.setAttribute("onclick", "")
 
 
 }
