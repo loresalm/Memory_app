@@ -1,5 +1,43 @@
 
+function inpt(name, parent, type){
+    var inptT = document.createElement("INPUT");
+    inptT.setAttribute("name",name);
+    inptT.setAttribute("type", type);
+    parent.appendChild(inptT)
+    return inptT
+}
 
+
+
+
+var BackgroundDiv= document.createElement("Div")
+BackgroundDiv.setAttribute("id", "background-div");
+document.body.appendChild(BackgroundDiv)
+
+
+var QuestionTextDiv= document.createElement("Div")
+QuestionTextDiv.setAttribute("id", "question-text-div");
+BackgroundDiv.appendChild(QuestionTextDiv)
+QuestionTextDiv.innerText = "Domanda?"
+
+/// btn sign in
+var R1 = inpt("btnR3", BackgroundDiv, "button")
+R1.setAttribute("value", "response 1")
+R1.setAttribute("onclick", "")
+
+/// btn sign in
+var R2 = inpt("btnR3", BackgroundDiv, "button")
+R2.setAttribute("value", "response 2")
+R2.setAttribute("onclick", "")
+
+
+/// btn sign in
+var R3 = inpt("btnR3", BackgroundDiv, "button")
+R3.setAttribute("value", "response 3")
+R3.setAttribute("onclick", "")
+
+
+/**
 
 function goodBye(){
     if(SAVED){
@@ -150,7 +188,7 @@ async function saveUnser(){
         return
     }
 
-    /*
+
     var mailadvise = document.createElement('h3');
     signinDiv.appendChild(mailadvise)
     mailadvise.innerText= "Check your mail:"
@@ -160,7 +198,7 @@ async function saveUnser(){
     var mailadvise2 = document.createElement('h4');
     mailadvise2.innerText= "check your junk email folder"
     signinDiv.appendChild(mailadvise2)
-    */
+ 
 
    
     USER.addE()
@@ -312,7 +350,6 @@ BackgroundDiv.appendChild(PutDataDiv)
 var putPtl= document.createElement("H3")
 putPtl.textContent = "Create subject:"
 PutDataDiv.appendChild(putPtl)
-
 
 function inpt(name, pholder, parent, type){
     var inptT = document.createElement("INPUT");
@@ -575,7 +612,7 @@ function updateDisplayBlock(){
         btnCloseBlk.setAttribute("onclick", "closeBlock("+i+")")
 
         
-        /*
+        
 
         meanBlkP.onmouseover = function(){
             btnInfoBlk.style.display= "block"
@@ -584,7 +621,7 @@ function updateDisplayBlock(){
         meanBlkP.onmouseleave = function(){
             btnInfoBlk.style.display= "none" 
         }
-        */
+        
         
         var titleBlkP= document.createElement("H2")
         titleBlkP.innerHTML= EXAM.blocks[i]
@@ -607,11 +644,13 @@ function updateDisplayBlock(){
             btnCloseExm.setAttribute("value", "x")
             btnCloseExm.setAttribute("onclick", "closeExam("+i+","+j+")")
 
-            /*
+          ¨
+
+
             var btnInfoExm = inpt("btnInfoExmImp", "", exmDiv, "button")
             btnInfoExm.setAttribute("value", "?")
             btnInfoExm.setAttribute("onclick", "infoMeanExm()")
-            */
+       
 
 
 
@@ -709,3 +748,5 @@ function onClick(dir, pos1, pos2, pos3){
     
     
 }
+
+*/

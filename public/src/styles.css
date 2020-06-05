@@ -8,8 +8,7 @@
 body 
 {
     background: #eaeaea;
-    
-    
+        
 }
 
 #background-div{
@@ -21,6 +20,25 @@ body
     margin: 0 auto;
     min-height: 100vh;
 }
+#question-text-div{
+    position: relative;
+    box-sizing: border-box; 
+    padding: 0px 10px;
+    height: auto;
+    font-size: 40px;
+    color: #E41318;
+    font-weight: 900; 
+    text-align: center;
+    background: rgb(114, 34, 218);
+}
+
+
+input[type="button"] {
+    outline: none;
+    margin: 10px 200px 0px 200px;
+    width: 500px;
+}
+/*
 #title-div{
     position: relative;
     box-sizing: border-box; 
@@ -333,7 +351,7 @@ input[name="btnClose"]:hover {
     font-size: 30px;
     font-weight: 10;
     background: rgb(228, 19, 22);
-    /*border-radius: 0px 0px 15px 15px;*/
+    border-radius: 0px 0px 15px 15px;
     display: flex;
     flex-direction: row;
     z-index: 1;
@@ -347,19 +365,7 @@ input[name="btnClose"]:hover {
 
 }
 
-#sign-in-div{
-    display: none; /* Hidden by default */
-    position: absolute; /* Stay in place */
-    z-index: 3; /* Sit on top */
-    background-color: white; /* Black w/ opacity */
-    border: 3px solid rgb(228, 19, 22);
-    border-radius: 8px;
-    color: rgb(228, 19, 22);
-    width: 210px;
-    left: 300px; 
-    top: 90px; 
-    padding: 30px 40px;
-}
+
 
 
 #sign-in-div input {
@@ -371,20 +377,7 @@ input[name="btnClose"]:hover {
 
 }
 
-#login-div{
-    display: none; /* Hidden by default */
-    position: absolute; /* Stay in place */
-    z-index: 3; /* Sit on top */
-    background-color: white; /* Black w/ opacity */
-    border: 3px solid rgb(228, 19, 22);
-    border-radius: 8px;
-    color: rgb(228, 19, 22);
-    width: 210px;
-    left: 300px; 
-    top: 90px; 
-    padding: 30px 40px;
 
-}
 
 input {
     padding: 4px 12px;
@@ -498,3 +491,4 @@ iframe {
     color: white
     
 }
+*/
