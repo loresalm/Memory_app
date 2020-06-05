@@ -39,6 +39,7 @@ function preload(){
 
 
 
+
 var BackgroundDiv= document.createElement("Div")
 BackgroundDiv.setAttribute("id", "background-div");
 document.body.appendChild(BackgroundDiv)
@@ -47,7 +48,7 @@ document.body.appendChild(BackgroundDiv)
 var QuestionTextDiv= document.createElement("Div")
 QuestionTextDiv.setAttribute("id", "question-text-div");
 BackgroundDiv.appendChild(QuestionTextDiv)
-QuestionTextDiv.innerText = data.ciao
+QuestionTextDiv.innerText = "Question ? "
 
 /// btn sign in
 var R1 = inpt("btnR3", BackgroundDiv, "button")
