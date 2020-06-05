@@ -7,7 +7,40 @@ function inpt(name, parent, type){
     return inptT
 }
 
+/*
+var FAIL = ["La stazza è:","il volume degli spazi chiusi dell'unità.",
+"il peso dell'unità.",
+"l dislocamento dell'unità.",
+1,
+"Una tonnellata di stazza corrisponde:",
+"a 2,83 metri cubi.",
+"a 2,83 kilogrammi.",
+"a 8,32 metri cubi.",
+2]
+var PASS = ["La stazza è:",
+"il volume degli spazi chiusi dell'unità.",
+"il peso dell'unità.",
+"l dislocamento dell'unità.",
+1,
+"Una tonnellata di stazza corrisponde:",
+"a 2,83 metri cubi.",
+"a 2,83 kilogrammi.",
+"a 8,32 metri cubi.",
+2]
+*/
+let data
+function preload(){
 
+    console.log("abc")
+    data = loadJSON('dataJJ1.json');
+    console.log(data.ciao)
+    }
+
+function draw(){
+
+    let text = data.ciao
+    console.log(text)
+}
 
 
 var BackgroundDiv= document.createElement("Div")
@@ -18,7 +51,7 @@ document.body.appendChild(BackgroundDiv)
 var QuestionTextDiv= document.createElement("Div")
 QuestionTextDiv.setAttribute("id", "question-text-div");
 BackgroundDiv.appendChild(QuestionTextDiv)
-QuestionTextDiv.innerText = "Domanda?"
+QuestionTextDiv.innerText =data.ciao
 
 /// btn sign in
 var R1 = inpt("btnR3", BackgroundDiv, "button")
@@ -36,6 +69,10 @@ var R3 = inpt("btnR3", BackgroundDiv, "button")
 R3.setAttribute("value", "response 3")
 R3.setAttribute("onclick", "")
 
+
+
+
+  
 
 /**
 
