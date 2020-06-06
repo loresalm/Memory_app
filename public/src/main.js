@@ -277,8 +277,6 @@ function wrongQuestion(){
 
 function resetWrong(){
 	let wrongRef = DB.ref('Data/Wrong');
-	console.log("keys_wrong.lengh")
-	console.log(keys_wrong.length)
 	for(var i = 0; i< keys_wrong.length; i++ ){
 		wrongRef.child(keys_wrong[i]).update({ try: 0 })
 	}
