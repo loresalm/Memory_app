@@ -33,7 +33,7 @@ body
 }
 
 
-input[type="button"] {
+input[name="btnR"] {
     outline: none;
     margin: 10px 200px 0px 200px;
     width: 500px;
