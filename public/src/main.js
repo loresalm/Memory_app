@@ -6,7 +6,8 @@
 var COUNT_Q_EXAM = 0
 var Q_EXAM_MAX = 20 //CHANGE HERE
 var COUNT_Q_ALL = 0
-var COUNT_Q_WRONG = 0 
+var COUNT_Q_WRONG = 0
+var DISPLAY_Q_WRONG = 0 
 var COUNT_Q_WRONG_DEL = 0
 var TRY_MAX = 3 //CHANGE HERE
 var SCORE = 0
@@ -49,9 +50,14 @@ var BackgroundDiv= document.createElement("Div")
 BackgroundDiv.setAttribute("id", "background-div");
 document.body.appendChild(BackgroundDiv)
 
+var NBQDiv= document.createElement("Div")
+NBQDiv.setAttribute("id", "nbq-div");
+BackgroundDiv.appendChild(NBQDiv)
+
 var QuestionTextDiv= document.createElement("Div")
 QuestionTextDiv.setAttribute("id", "question-text-div");
 BackgroundDiv.appendChild(QuestionTextDiv)
+
 
 var R1 = inpt("btnR", BackgroundDiv, "button")
 R1.setAttribute("onclick", "nextQuestion("+1+")")
@@ -73,7 +79,6 @@ R3.setAttribute("onclick", "nextQuestion("+3+")")
 var R3DIV= document.createElement("Div")
 R3DIV.setAttribute("id", "response-text-div");
 BackgroundDiv.appendChild(R3DIV)
-
 
 var ScoreDiv= document.createElement("Div")
 ScoreDiv.setAttribute("id", "score-div");
@@ -166,7 +171,8 @@ function displayQuestion(){
 	} 
 }
 
-function displayScore(i, par){
+function displayScore(i, par, NB_Q){
+	NBQDiv.innerText = "QUESTION: "+ (NB_Q + 1) +"  of  "+ par
 	switch(i){
 		case -1: 
 			ScoreDiv.style.background = "white";
@@ -211,10 +217,14 @@ function nextQuestion(i){
 				COUNT_Q_EXAM++
 				if (COUNT_Q_EXAM== Q_EXAM_MAX){
 					STATE = "END"
+					displayScore(j, Q_EXAM_MAX, COUNT_Q_EXAM)
+					NBQDiv.innerText = "FINISH"
+					displayQuestion()
+					break
 				}
 			}
 
-			displayScore(j, Q_EXAM_MAX)
+			displayScore(j, Q_EXAM_MAX, COUNT_Q_EXAM)
 			displayQuestion()
 
 			break;
@@ -231,10 +241,14 @@ function nextQuestion(i){
 				COUNT_Q_ALL++ 
 				if(COUNT_Q_ALL == keys_all.length){
 					STATE = "END"
+					displayScore(j, keys_all.length, COUNT_Q_ALL)
+					NBQDiv.innerText = "FINISH"
+					displayQuestion()
+					break;
 				}
 			}
 
-			displayScore(j, keys_all.length)
+			displayScore(j, keys_all.length, COUNT_Q_ALL)
 			displayQuestion()
 
 			break;
@@ -255,15 +269,17 @@ function nextQuestion(i){
 			COUNT_Q_WRONG++ 
 			while(wrong_questions[keys_wrong[COUNT_Q_WRONG]].try >= TRY_MAX){
 					COUNT_Q_WRONG++ 
+					DISPLAY_Q_WRONG++
 					if(COUNT_Q_WRONG == keys_wrong.length){
 						STATE = "END"
+						displayScore(j, keys_wrong.length-COUNT_Q_WRONG_DEL,COUNT_Q_WRONG-DISPLAY_Q_WRONG)
+						displayQuestion()
+						NBQDiv.innerText = "FINISH"
+						break;
 					}
 			} 
-			
-			displayScore(j, keys_wrong.length-COUNT_Q_WRONG_DEL)
+			displayScore(j, keys_wrong.length-COUNT_Q_WRONG_DEL,COUNT_Q_WRONG-DISPLAY_Q_WRONG)
 			displayQuestion()
-			
-
 			break;
 
 		case "END":
@@ -277,7 +293,7 @@ function examQuestion(){
 	SCORE = 0
 	keys_exam = keys_all.map((a) => ({sort: Math.random(), value: a})).sort((a, b) => a.sort - b.sort).map((a) => a.value)
 	COUNT_Q_EXAM= 0
-	displayScore(-1, Q_EXAM_MAX)
+	displayScore(-1, Q_EXAM_MAX, COUNT_Q_EXAM)
 	STATE = "EXAM"
 	displayQuestion()
 }
@@ -287,7 +303,7 @@ function allQuestion(){
 	SCORE = 0
 	COUNT_Q_ALL = 0
 	STATE = "ALL"
-	displayScore(-1, keys_all.length)
+	displayScore(-1, keys_all.length, COUNT_Q_ALL)
 	displayQuestion()
 }
 
@@ -297,13 +313,15 @@ function wrongQuestion(){
 	SCORE = 0
 	STATE = "WRONG"
 	COUNT_Q_WRONG = 0
+	DISPLAY_Q_WRONG= 0
 	while(wrong_questions[keys_wrong[COUNT_Q_WRONG]].try == TRY_MAX){
-		COUNT_Q_WRONG++ 
+		COUNT_Q_WRONG++
+		DISPLAY_Q_WRONG++ 
 		if(COUNT_Q_WRONG == keys_wrong.length){
 			STATE = "END"
 		}
 	}
-	displayScore(-1, keys_wrong.length- COUNT_Q_WRONG_DEL)
+	displayScore(-1, keys_wrong.length- COUNT_Q_WRONG_DEL,COUNT_Q_WRONG- DISPLAY_Q_WRONG)
 	displayQuestion()
 }
 
@@ -313,9 +331,11 @@ function resetWrong(){
 		wrongRef.child(keys_wrong[i]).update({ try: 0 })
 	}
 	COUNT_Q_WRONG_DEL = 0
+	DISPLAY_Q_WRONG= 0
 	STATE = "END"
 	displayQuestion()
-	ScoreDiv.innerText = " "
+	ScoreDiv.innerText = ""
+	NBQDiv.innerText = ""
 	ScoreDiv.style.background = "white";		
 				
 }
