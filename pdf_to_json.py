@@ -6,6 +6,8 @@ questions = []
 response = []
 true = []
 
+#FORMAT FIRST LINE: Data,
+
 data = pd.read_csv('FV.csv', sep=',',encoding= 'unicode_escape')
 for d in range(0, len(data["Data"]), 4):
     questions.append(data["Data"][d])
