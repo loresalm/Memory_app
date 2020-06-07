@@ -3,38 +3,74 @@
     margin: 0;
     padding: 0;
     color: black;
+
 }
 
 body 
 {
-    background: #eaeaea;
-        
+    background: #eaeaea;       
 }
 
 #background-div{
     position: relative;
-    /*height: auto;*/
     background: #fff;
     padding: 10px;
-    width: 866px;
+    width: 800px;
     margin: 0 auto;
     min-height: 100vh;
 }
+
 #question-text-div{
+    margin: 65px 0px;
     position: relative;
-    box-sizing: border-box; 
-    padding: 0px 10px;
-    height: auto;
-    font-size: 40px;
-    color: #E41318;
-    font-weight: 900; 
+    padding: 10px;
+    font-size: 30px;
+    height: 250px;
+    color: #000000;
     text-align: center;
-    background: rgb(114, 34, 218);
+    background: #FFEC7D
 }
 
+#response-text-div{
+    margin: 5px 0px;
+    position: relative;
+    padding: 10px;
+    font-size: 20px;
+    height: 150px;
+    color: #000000;
+    text-align: center;
+}
+
+#score-div{
+    position: relative;
+    margin: 120px 150px;
+    width: 500px;
+    height: 40px;
+    text-align: center;
+    font-size: 30px;
+    background: #ffffff;
+
+}
 
 input[name="btnR"] {
-    outline: none;
-    margin: 10px 200px 0px 200px;
-    width: 500px;
+    position: relative;
+    width: 800px;
+    height: 90px;
+    text-align: center;
+    font-size: 30px;
+    border-radius: 10px;
+    box-shadow: -2px 4px 8px rgba(36, 34, 31, 0.08);
+
+}
+
+input[name="btnBottom"]{
+    height: 100px;
+    width: 150px;
+    text-align: center;
+    font-size: 30px;
+    margin: 15px 25px;
+    box-shadow: -2px 4px 8px rgba(36, 34, 31, 0.08);
+
+    
+
 }

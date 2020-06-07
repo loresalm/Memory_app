@@ -55,27 +55,46 @@ BackgroundDiv.appendChild(QuestionTextDiv)
 
 var R1 = inpt("btnR", BackgroundDiv, "button")
 R1.setAttribute("onclick", "nextQuestion("+1+")")
+
+var R1DIV= document.createElement("Div")
+R1DIV.setAttribute("id", "response-text-div");
+BackgroundDiv.appendChild(R1DIV)
+
 var R2 = inpt("btnR", BackgroundDiv, "button")
 R2.setAttribute("onclick", "nextQuestion("+2+")")
+
+var R2DIV= document.createElement("Div")
+R2DIV.setAttribute("id", "response-text-div");
+BackgroundDiv.appendChild(R2DIV)
+
 var R3 = inpt("btnR", BackgroundDiv, "button")
 R3.setAttribute("onclick", "nextQuestion("+3+")")
+
+var R3DIV= document.createElement("Div")
+R3DIV.setAttribute("id", "response-text-div");
+BackgroundDiv.appendChild(R3DIV)
+
 
 var ScoreDiv= document.createElement("Div")
 ScoreDiv.setAttribute("id", "score-div");
 BackgroundDiv.appendChild(ScoreDiv)
 
-var All = inpt("btnALL", BackgroundDiv, "button")
-All.setAttribute("value", "ALL questions")
+var All = inpt("btnBottom",BackgroundDiv, "button")
+All.setAttribute("value", "All")
 All.setAttribute("onclick", "allQuestion()")
-var Exam = inpt("btnExam", BackgroundDiv, "button")
-Exam.setAttribute("value", "Exam question")
+var Exam = inpt("btnBottom", BackgroundDiv, "button")
+Exam.setAttribute("value", "Exam")
 Exam.setAttribute("onclick", "examQuestion()")
-var Wrong = inpt("btnWrong", BackgroundDiv, "button")
-Wrong.setAttribute("value", "Wrong question")
+var Wrong = inpt("btnBottom", BackgroundDiv, "button")
+Wrong.setAttribute("value", "Wrongs")
 Wrong.setAttribute("onclick", "wrongQuestion()")
-var ResetWrong = inpt("btnResetWrong", BackgroundDiv, "button")
-ResetWrong.setAttribute("value", "Reset wrong question")
+var ResetWrong = inpt("btnBottom", BackgroundDiv, "button")
+ResetWrong.setAttribute("value", "Reset W")
 ResetWrong.setAttribute("onclick", "resetWrong()")
+
+R1.setAttribute("value", "A")
+R2.setAttribute("value", "B")
+R3.setAttribute("value", "C")
 
 
 
@@ -119,37 +138,51 @@ function displayQuestion(){
 
 		case "EXAM":
 			QuestionTextDiv.innerText = all_questions[keys_exam[COUNT_Q_EXAM]].question
-			R1.setAttribute("value", all_questions[keys_exam[COUNT_Q_EXAM]].choices[0])
-			R2.setAttribute("value", all_questions[keys_exam[COUNT_Q_EXAM]].choices[1])
-			R3.setAttribute("value", all_questions[keys_exam[COUNT_Q_EXAM]].choices[2])	
+			R1DIV.innerText = all_questions[keys_exam[COUNT_Q_EXAM]].choices[0]
+			R2DIV.innerText = all_questions[keys_exam[COUNT_Q_EXAM]].choices[1]
+			R3DIV.innerText = all_questions[keys_exam[COUNT_Q_EXAM]].choices[2]
 			break;
 
 		case "ALL":
 			QuestionTextDiv.innerText = all_questions[keys_all[COUNT_Q_ALL]].question
-			R1.setAttribute("value", all_questions[keys_all[COUNT_Q_ALL]].choices[0])
-			R2.setAttribute("value", all_questions[keys_all[COUNT_Q_ALL]].choices[1])
-			R3.setAttribute("value", all_questions[keys_all[COUNT_Q_ALL]].choices[2])
+			R1DIV.innerText = all_questions[keys_all[COUNT_Q_ALL]].choices[0]
+			R2DIV.innerText = all_questions[keys_all[COUNT_Q_ALL]].choices[1]
+			R3DIV.innerText = all_questions[keys_all[COUNT_Q_ALL]].choices[2]
 			break;
 
 		case "WRONG":
-			QuestionTextDiv.innerText = all_questions[keys_wrong[COUNT_Q_WRONG]].question
-			R1.setAttribute("value", all_questions[keys_wrong[COUNT_Q_WRONG]].choices[0])
-			R2.setAttribute("value", all_questions[keys_wrong[COUNT_Q_WRONG]].choices[1])
-			R3.setAttribute("value", all_questions[keys_wrong[COUNT_Q_WRONG]].choices[2])
+			QuestionTextDiv.innerText = wrong_questions[keys_wrong[COUNT_Q_WRONG]].question
+			R1DIV.innerText = wrong_questions[keys_wrong[COUNT_Q_WRONG]].choices[0]
+			R2DIV.innerText = wrong_questions[keys_wrong[COUNT_Q_WRONG]].choices[1]
+			R3DIV.innerText = wrong_questions[keys_wrong[COUNT_Q_WRONG]].choices[2]
 			break;
 
 		case "END":
-			QuestionTextDiv.innerText = "END"
-			R1.setAttribute("value",  "END")
-			R2.setAttribute("value",  "END")
-			R3.setAttribute("value",  "END")
+			QuestionTextDiv.innerText = "PRESS ALL,  EXAM OR WRONGS"
+			R1DIV.innerText = "END"
+			R2DIV.innerText = "END"
+			R3DIV.innerText = "END"
 			break;
 	} 
 }
 
 function displayScore(i, par){
+	switch(i){
+		case -1: 
+			ScoreDiv.style.background = "white";
+			ScoreDiv.innerText = "SCORE=" + SCORE + " / " + par
+			break;
+		case 0: 
+			ScoreDiv.style.background = "tomato";
+			ScoreDiv.innerText = "Wrong-->SCORE:"  + SCORE + " / " + par
+			break;
+		case 1: 
+			ScoreDiv.style.background = "lime"
+			ScoreDiv.innerText = "Correct-->SCORE:"  + SCORE + " / " + par
+			break;
+	}
 
-	ScoreDiv.innerText = "SCORE : ( + "+ i +") " + SCORE + " / " + par
+	
 
 }
 
@@ -221,7 +254,6 @@ function nextQuestion(i){
 			
 			COUNT_Q_WRONG++ 
 			while(wrong_questions[keys_wrong[COUNT_Q_WRONG]].try >= TRY_MAX){
-					inW	= true
 					COUNT_Q_WRONG++ 
 					if(COUNT_Q_WRONG == keys_wrong.length){
 						STATE = "END"
@@ -245,7 +277,7 @@ function examQuestion(){
 	SCORE = 0
 	keys_exam = keys_all.map((a) => ({sort: Math.random(), value: a})).sort((a, b) => a.sort - b.sort).map((a) => a.value)
 	COUNT_Q_EXAM= 0
-	displayScore(0, Q_EXAM_MAX)
+	displayScore(-1, Q_EXAM_MAX)
 	STATE = "EXAM"
 	displayQuestion()
 }
@@ -255,7 +287,7 @@ function allQuestion(){
 	SCORE = 0
 	COUNT_Q_ALL = 0
 	STATE = "ALL"
-	displayScore(0, keys_all.length)
+	displayScore(-1, keys_all.length)
 	displayQuestion()
 }
 
@@ -271,7 +303,7 @@ function wrongQuestion(){
 			STATE = "END"
 		}
 	}
-	displayScore(0, keys_wrong.length- COUNT_Q_WRONG_DEL)
+	displayScore(-1, keys_wrong.length- COUNT_Q_WRONG_DEL)
 	displayQuestion()
 }
 
@@ -283,7 +315,8 @@ function resetWrong(){
 	COUNT_Q_WRONG_DEL = 0
 	STATE = "END"
 	displayQuestion()
-	ScoreDiv.innerText = " "		
+	ScoreDiv.innerText = " "
+	ScoreDiv.style.background = "white";		
 				
 }
 
